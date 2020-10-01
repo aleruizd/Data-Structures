@@ -14,7 +14,9 @@ module.exports = {
         new MinCssExtractPlugin({
             filename: 'styles.css'
         }),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: path.resolve('./public/index.html'),
+        })
     ],
     module: {
         rules: [
