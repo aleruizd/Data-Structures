@@ -1,77 +1,51 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import Control from './components/Control';
-import NodeContainer from './components/NodeContainer';
+import Menu from './components/Menu';
+import StackSimulator from './components/StackSimulator';
+import QueueSimulator from './components/QueueSimulator';
 
 class App extends Component {
+
     constructor(){
         super();
+
         this.state = {
-            nodeList: new Array
+            menuOpen: false,
+            structureElement: <StackSimulator/>
         }
 
-        this.handlePush = this.handlePush.bind(this);
-        this.handlePop = this.handlePop.bind(this);
-        this.handleEmpty = this.handleEmpty.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
+        this.changeStructure = this.changeStructure.bind(this)
     }
 
-    handlePush(pushValue){
+    toggleMenu(){
         this.setState({
-            nodeList: this.state.nodeList.concat([{pushValue, mounted: true}])
+            menuOpen: !this.state.menuOpen
         })
     }
 
-    handlePop(){
-        let nodeList = this.state.nodeList;
-        
-        if(nodeList.length > 0){
-            let newNodeList = nodeList.slice();
-            
-            
-            newNodeList[newNodeList.length-1].mounted = false;
+    changeStructure(structure){
+        let structureElement;
 
-            setTimeout(function(){
-                newNodeList.splice(-1,1);
-                this.setState({
-                    nodeList: newNodeList
-                })
-            }.bind(this),1000);
-
-            this.setState({
-                nodeList: newNodeList
-            })
+        switch(structure){
+            case 'stack': structureElement = <StackSimulator/>
+                        break;
+            case 'queue': structureElement = <QueueSimulator/>
+                        break;
         }
-    }
-
-    handleEmpty(){
-        let nodeList = this.state.nodeList;
-        let newNodeList = nodeList.slice();
-
-        newNodeList.forEach(node => {
-            node.mounted = false
-        });
-
-        setTimeout(function(){
-            this.setState({
-                nodeList: []
-            })
-        }.bind(this),1000);
-
+        
         this.setState({
-            nodeList: newNodeList
+            structureElement,
+            menuOpen: false
         })
     }
 
     render(){
         return(
             <div className="app">
-                <Header />
-                <NodeContainer nodeList={this.state.nodeList}/>
-                <Control 
-                    handlePush={this.handlePush} 
-                    handlePop={this.handlePop}
-                    handleEmpty={this.handleEmpty}
-                />
+                <Header toggleMenu={this.toggleMenu}/>
+                <Menu menuOpen={this.state.menuOpen} changeStructure={this.changeStructure}/>
+                {this.state.structureElement}
             </div>
         )
     }

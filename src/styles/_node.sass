@@ -1,9 +1,7 @@
 .node
-    //opacity: 0
     width: min-content
     text-align: center
     margin: 1rem 0
-    //animation: nodeOpacity .5s .5s forwards, nodeHeight .5s forwards
 
 .top-node
     opacity: 1
@@ -27,31 +25,6 @@
 
 .node-pop
     animation: nodePopHeight .5s .5s forwards, nodePopOpacity .5s forwards !important
-
-@keyframes nodeHeight
-    0%
-        height: 0
-    100%
-        height: 12rem
-       
-
-@keyframes nodeOpacity
-    0%
-        opacity: 0%
-    100%
-        opacity: 100%
-
-@keyframes nodePopHeight
-    0%
-        height: 12rem
-    100%
-        height: 0
-
-@keyframes nodePopOpacity
-    0%
-        opacity: 100%
-    100%
-        opacity: 0%
 
 .node-enter
     opacity: 0%

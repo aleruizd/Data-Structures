@@ -32,7 +32,7 @@ class Node extends Component{
 
     render(){
         return(
-            <CSSTransition in={this.state.mounted} timeout={1000} classNames="node" unmountOnExit>
+            <CSSTransition in={this.state.mounted} timeout={1000} classNames="node" unmountOnExit onExited={this.props.handleNodeUnmount}>
                 <div className={this.state.nodeClass}>
                     <div className="node-value">
                         <span>{this.props.nodeValue}</span>

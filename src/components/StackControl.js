@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Control extends Component{
+class StackControl extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -30,7 +30,7 @@ class Control extends Component{
 
     render(){
         return(
-            <div className="control">
+            <div className="stack-control">
                 <div className="push-control">
                     <input type="text" name="pushValue" value={this.state.pushValue} onChange={this.handleInputChange}/>
                     <button onClick={this.handlePush}>Push</button>
@@ -42,4 +42,4 @@ class Control extends Component{
     }
 }
 
-export default Control;
+export default StackControl;
